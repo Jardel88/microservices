@@ -11,6 +11,7 @@ import br.com.funcionario.domain.Funcionario;
 import br.com.funcionario.domain.dto.FuncionarioDTO;
 import br.com.funcionario.repositories.FuncionarioRepository;
 import br.com.funcionario.services.FuncionarioService;
+import br.com.funcionario.services.exceptions.DataIntegrityViolationException;
 import br.com.funcionario.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -35,17 +36,26 @@ public class FuncionarioServiceImpl implements FuncionarioService{
 
 	@Override
 	public Funcionario create(FuncionarioDTO objDTO) {
+		findByEmail(objDTO);
 		return funcionarioRepository.save(mapper.map(objDTO, Funcionario.class));
 	}
 
 	@Override
 	public Funcionario update(FuncionarioDTO objDTO) {
+		findByEmail(objDTO);
 		return funcionarioRepository.save(mapper.map(objDTO, Funcionario.class));
 	}
 
 	@Override
 	public void delete(Integer id) {
 		funcionarioRepository.deleteById(id);
+	}
+	
+	private void findByEmail(FuncionarioDTO objDTO) {
+		Optional<Funcionario> funcionario = funcionarioRepository.findByEmail(objDTO.getEmail());
+		if(funcionario.isPresent() && !funcionario.get().getId().equals(objDTO.getId())) {
+			throw new DataIntegrityViolationException("E-mail já cadastrado no sistema");
+		}
 	}
 
 }
