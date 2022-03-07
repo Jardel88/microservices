@@ -1,5 +1,6 @@
 package br.com.funcionario.services.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,11 @@ public class FuncionarioServiceImpl implements FuncionarioService{
 	public Funcionario findById(Integer id) {
 		Optional<Funcionario> funcionario = funcionarioRepository.findById(id);
 		return funcionario.orElse(null);
+	}
+
+	@Override
+	public List<Funcionario> findAll() {
+		return funcionarioRepository.findAll();
 	}
 	
 	
