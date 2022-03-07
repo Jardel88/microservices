@@ -11,6 +11,7 @@ import br.com.funcionario.domain.Funcionario;
 import br.com.funcionario.domain.dto.FuncionarioDTO;
 import br.com.funcionario.repositories.FuncionarioRepository;
 import br.com.funcionario.services.FuncionarioService;
+import br.com.funcionario.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class FuncionarioServiceImpl implements FuncionarioService{
@@ -24,7 +25,7 @@ public class FuncionarioServiceImpl implements FuncionarioService{
 	@Override
 	public Funcionario findById(Integer id) {
 		Optional<Funcionario> funcionario = funcionarioRepository.findById(id);
-		return funcionario.orElse(null);
+		return funcionario.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
 	}
 
 	@Override
