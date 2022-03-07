@@ -41,7 +41,10 @@ public class FuncionarioServiceImpl implements FuncionarioService{
 	public Funcionario update(FuncionarioDTO objDTO) {
 		return funcionarioRepository.save(mapper.map(objDTO, Funcionario.class));
 	}
-	
-	
+
+	@Override
+	public void delete(Integer id) {
+		funcionarioRepository.deleteById(id);
+	}
 
 }

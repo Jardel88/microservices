@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -52,6 +53,12 @@ public class FuncionarioController {
 	public ResponseEntity<FuncionarioDTO> update(@PathVariable Integer id, @RequestBody FuncionarioDTO objDTO){
 		objDTO.setId(id);
 		return ResponseEntity.ok().body(mapper.map(funcionarioService.update(objDTO), FuncionarioDTO.class));
+	}
+	
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<FuncionarioDTO> delete(@PathVariable Integer id){
+		funcionarioService.delete(id);
+		return ResponseEntity.noContent().build();
 	}
 
 }

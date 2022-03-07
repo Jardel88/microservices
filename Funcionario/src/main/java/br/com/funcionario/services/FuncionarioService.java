@@ -11,5 +11,6 @@ public interface FuncionarioService {
 	List<Funcionario> findAll();
 	Funcionario create(FuncionarioDTO objDTO);
 	Funcionario update(FuncionarioDTO objDTO);
+	void delete(Integer id);
 
 }
