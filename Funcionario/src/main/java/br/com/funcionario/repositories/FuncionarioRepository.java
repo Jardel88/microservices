@@ -12,4 +12,6 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Intege
 
 	Optional<Funcionario> findByEmail(String email);
 
+	Optional<Funcionario> findByCpf(String cpf);
+
 }

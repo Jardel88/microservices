@@ -36,12 +36,14 @@ public class FuncionarioServiceImpl implements FuncionarioService{
 
 	@Override
 	public Funcionario create(FuncionarioDTO objDTO) {
+		findByCpf(objDTO);
 		findByEmail(objDTO);
 		return funcionarioRepository.save(mapper.map(objDTO, Funcionario.class));
 	}
 
 	@Override
 	public Funcionario update(FuncionarioDTO objDTO) {
+		findByCpf(objDTO);
 		findByEmail(objDTO);
 		return funcionarioRepository.save(mapper.map(objDTO, Funcionario.class));
 	}
@@ -55,6 +57,12 @@ public class FuncionarioServiceImpl implements FuncionarioService{
 		Optional<Funcionario> funcionario = funcionarioRepository.findByEmail(objDTO.getEmail());
 		if(funcionario.isPresent() && !funcionario.get().getId().equals(objDTO.getId())) {
 			throw new DataIntegrityViolationException("E-mail já cadastrado no sistema");
+		}
+	}
+	private void findByCpf(FuncionarioDTO objDTO) {
+		Optional<Funcionario> funcionario = funcionarioRepository.findByCpf(objDTO.getCpf());
+		if(funcionario.isPresent() && !funcionario.get().getId().equals(objDTO.getId())) {
+			throw new DataIntegrityViolationException("Cpf já cadastrado no sistema");
 		}
 	}
 
