@@ -10,5 +10,6 @@ public interface FuncionarioService {
 	Funcionario findById(Integer id);
 	List<Funcionario> findAll();
 	Funcionario create(FuncionarioDTO objDTO);
+	Funcionario update(FuncionarioDTO objDTO);
 
 }

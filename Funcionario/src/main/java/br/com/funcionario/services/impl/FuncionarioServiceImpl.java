@@ -36,6 +36,11 @@ public class FuncionarioServiceImpl implements FuncionarioService{
 	public Funcionario create(FuncionarioDTO objDTO) {
 		return funcionarioRepository.save(mapper.map(objDTO, Funcionario.class));
 	}
+
+	@Override
+	public Funcionario update(FuncionarioDTO objDTO) {
+		return funcionarioRepository.save(mapper.map(objDTO, Funcionario.class));
+	}
 	
 	
 
