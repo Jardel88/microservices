@@ -85,5 +85,6 @@ public class FuncionarioController {
 		funcionarioService.delete(id);
 		return ResponseEntity.noContent().build();
 	}
+	
 
 }
