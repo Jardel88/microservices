@@ -7,6 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.funcionario.config.kafka.FuncionarioProducer;
 import br.com.funcionario.domain.Funcionario;
 import br.com.funcionario.domain.dto.FuncionarioDTO;
 import br.com.funcionario.repositories.FuncionarioRepository;
@@ -22,6 +23,9 @@ public class FuncionarioServiceImpl implements FuncionarioService{
 	
 	@Autowired
 	private FuncionarioRepository funcionarioRepository;
+	
+	@Autowired
+	private FuncionarioProducer funcionarioProducer;
 
 	@Override
 	public Funcionario findById(Integer id) {
@@ -38,6 +42,7 @@ public class FuncionarioServiceImpl implements FuncionarioService{
 	public Funcionario create(FuncionarioDTO objDTO) {
 		findByCpf(objDTO);
 		findByEmail(objDTO);
+		funcionarioProducer.send(objDTO);
 		return funcionarioRepository.save(mapper.map(objDTO, Funcionario.class));
 	}
 
