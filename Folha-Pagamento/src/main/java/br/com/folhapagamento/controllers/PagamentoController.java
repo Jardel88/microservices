@@ -1,6 +1,5 @@
 package br.com.folhapagamento.controllers;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +15,6 @@ import br.com.folhapagamento.domain.dto.FuncionarioDTO;
 @RequestMapping("/v1/funcionario")
 public class PagamentoController {
 	
-	@Autowired
-	ModelMapper mapper;
 	
 	@Autowired
 	private FeignClientConfig feignClientConfig;
@@ -25,7 +22,6 @@ public class PagamentoController {
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<FuncionarioDTO> findById(@PathVariable Integer id){
 		FuncionarioDTO objDTO = feignClientConfig.findById(id).getBody();
-		System.out.println("teste: " + objDTO.getNome());
 		return ResponseEntity.ok().body(objDTO);
 	}
 
