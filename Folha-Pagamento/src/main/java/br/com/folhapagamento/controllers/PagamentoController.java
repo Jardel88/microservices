@@ -24,6 +24,8 @@ public class PagamentoController {
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<FuncionarioDTO> findById(@PathVariable Integer id){
+		FuncionarioDTO objDTO = feignClientConfig.findById(id).getBody();
+		System.out.println("teste" + objDTO.getName());
 		return ResponseEntity.ok().body(mapper.map(feignClientConfig.findById(id), FuncionarioDTO.class));
 	}
 
