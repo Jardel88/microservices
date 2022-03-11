@@ -12,7 +12,7 @@ import lombok.Setter;
 public class Funcionario {
 	
 	private Integer id;
-	private String name;
+	private String nome;
 	private String cpf;
 	private double valorDiaria;
 

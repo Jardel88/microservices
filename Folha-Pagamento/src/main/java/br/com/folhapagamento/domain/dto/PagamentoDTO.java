@@ -12,7 +12,7 @@ import lombok.Setter;
 public class PagamentoDTO {
 	
 	private Integer id;
-	private String name;
+	private String nome;
 	private String cpf;
 	private double valorDiaria;
 	private Integer diasTrabalhados;
