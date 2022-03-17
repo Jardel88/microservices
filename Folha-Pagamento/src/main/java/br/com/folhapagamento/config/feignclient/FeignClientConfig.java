@@ -10,10 +10,10 @@ import br.com.folhapagamento.domain.dto.FuncionarioDTO;
 
 
 @Component
-@FeignClient(name = "pagamento", url = "localhost:8080/v1", path = "/funcionario")
+@FeignClient(name = "folha-pagamento", url = "localhost:8080/v1", path = "/funcionario")
 public interface FeignClientConfig {
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<FuncionarioDTO> findById(@PathVariable Integer id);
+	ResponseEntity<FuncionarioDTO> findById(@PathVariable Integer id);
 
 }

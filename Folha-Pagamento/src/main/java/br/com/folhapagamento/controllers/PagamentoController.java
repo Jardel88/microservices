@@ -7,22 +7,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.folhapagamento.config.feignclient.FeignClientConfig;
-import br.com.folhapagamento.domain.dto.FuncionarioDTO;
+import br.com.folhapagamento.domain.Pagamento;
+import br.com.folhapagamento.services.PagamentoService;
 
 
 @RestController
 @RequestMapping("/v1/funcionario")
 public class PagamentoController {
 	
-	
 	@Autowired
-	private FeignClientConfig feignClientConfig;
+	private PagamentoService pagamentoService;
 	
-	@GetMapping(value = "/{id}")
-	public ResponseEntity<FuncionarioDTO> findById(@PathVariable Integer id){
-		FuncionarioDTO objDTO = feignClientConfig.findById(id).getBody();
-		return ResponseEntity.ok().body(objDTO);
+	
+	
+	@GetMapping(value = "/{idFuncionario}/diasTrabalhados/{diasTrabalhados}")
+	public ResponseEntity<Pagamento> getPagamento(@PathVariable Integer idFuncionario, @PathVariable Integer diasTrabalhados){
+		Pagamento pagamento = pagamentoService.getPagamento(idFuncionario, diasTrabalhados);
+		return ResponseEntity.ok(pagamento);
 	}
 
 }

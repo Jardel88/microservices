@@ -11,10 +11,12 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Pagamento {
 	
-	private Integer id;
 	private String nome;
-	private String cpf;
 	private double valorDiaria;
 	private Integer diasTrabalhados;
+	
+	public double getTotal() {
+		return diasTrabalhados * valorDiaria;
+	}
 
 }
