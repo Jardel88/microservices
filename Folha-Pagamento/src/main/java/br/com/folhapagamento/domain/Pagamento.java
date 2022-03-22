@@ -1,4 +1,4 @@
-package br.com.funcionario.domain.dto;
+package br.com.folhapagamento.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,12 +9,14 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class FuncionarioDTO {
+public class Pagamento {
 	
-	private Integer id;
 	private String nome;
-	private String cpf;
-	private String email;
 	private double valorDiaria;
+	private Integer diasTrabalhados;
+	
+	public double getTotal() {
+		return diasTrabalhados * valorDiaria;
+	}
 
 }

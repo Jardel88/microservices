@@ -27,4 +27,6 @@ public class Funcionario {
 	@Column(unique = true)
 	private String email;
 	
+	private double valorDiaria;
+	
 }

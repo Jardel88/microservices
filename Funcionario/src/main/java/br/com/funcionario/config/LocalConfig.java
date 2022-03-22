@@ -19,9 +19,9 @@ public class LocalConfig {
 	
 	@Bean
 	public void startDB() {
-		Funcionario f1 = new Funcionario(null, "Maria","11111111111", "maria@email.com");
-		Funcionario f2 = new Funcionario(null, "Joao","22222222222", "joao@email.com");
-		Funcionario f3 = new Funcionario(null, "Jose","33333333333", "jose@email.com");
+		Funcionario f1 = new Funcionario(null, "Maria","11111111111", "maria@email.com", 50.00);
+		Funcionario f2 = new Funcionario(null, "Joao","22222222222", "joao@email.com", 60.00);
+		Funcionario f3 = new Funcionario(null, "Jose","33333333333", "jose@email.com", 100.00);
 		
 		
 		funcionarioRepository.saveAll(List.of(f1, f2, f3));
